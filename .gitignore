@@ -1,0 +1,16 @@
+# Virtual environment
+.venv/
+
+# Dataset (too large for GitHub)
+20_newsgroups/
+mini_newsgroups/
+
+# Built index and model files
+vector_db/
+cache_store/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
