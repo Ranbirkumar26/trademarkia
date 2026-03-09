@@ -52,15 +52,16 @@ def load_dataset(data_dir: str, max_docs: Optional[int] = None) -> List[Document
     for category_dir in sorted(data_path.iterdir()):
         if not category_dir.is_dir():
             continue
-        if category_dir.name.startswith(".") or category_dir.name == "__pycache__":
+        # Ignore system/project folders that might exist in the repo
+        if category_dir.name.startswith(".") or "pycache" in category_dir.name or category_dir.name in {"api", "scripts", "frontend", "vector_db", "cache_store"}:
             continue
         category = category_dir.name
 
         for doc_file in sorted(category_dir.iterdir()):
             if not doc_file.is_file():
                 continue
-            # Skip compiled/binary or irrelevant files
-            if doc_file.suffix not in {".txt", ""}:
+            # Only accept raw newsgroup message files (they normally have no extension)
+            if doc_file.suffix not in {""}:
                 continue
 
             # Decode with replacement so broken encodings don't crash load
