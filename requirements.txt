@@ -11,3 +11,7 @@ pydantic>=2.7.0
 
 # Utilities
 pandas>=2.2.0
+
+#front end
+streamlit
+requests
