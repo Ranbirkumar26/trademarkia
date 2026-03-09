@@ -4,9 +4,9 @@ scripts/build_index.py
 End-to-end pipeline: load → preprocess → embed → index → cluster → save.
 
 Usage:
-    python scripts/build_index.py --data_dir ../dataset_raw/20_newsgroups
-    python scripts/build_index.py --data_dir ../dataset_raw/20_newsgroups --max_docs 2000
-    python scripts/build_index.py --data_dir ../dataset_raw/20_newsgroups --n_clusters 20
+    python scripts/build_index.py --data_dir ../mini_newsgroups
+    python scripts/build_index.py --data_dir ../mini_newsgroups --max_docs 2000
+    python scripts/build_index.py --data_dir ../mini_newsgroups --n_clusters 20
 """
 
 import argparse
@@ -27,7 +27,7 @@ from clustering      import FuzzyClusterer, select_n_clusters
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_dir",    default="../dataset_raw/20_newsgroups")
+    parser.add_argument("--data_dir",    default="../mini_newsgroups")
     parser.add_argument("--max_docs",    type=int, default=None)
     parser.add_argument("--n_clusters",  type=int, default=None)
     parser.add_argument("--vector_dir",  default="vector_db")
