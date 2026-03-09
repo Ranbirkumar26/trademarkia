@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
-
-API_URL = "http://localhost:8001/query"
+import os
+API_URL = os.getenv("API_URL", "https://trademarkia-api.onrender.com/query")
 
 st.title("Semantic Search Engine")
 st.write("Search the 20 Newsgroups dataset")
