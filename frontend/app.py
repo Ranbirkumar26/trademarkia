@@ -14,13 +14,23 @@ if st.button("Search"):
         response = requests.post(API_URL, json={"query": query})
 
         if response.status_code == 200:
-            data = response.json()
-            st.subheader("Result")
+            st.subheader("Search Result")
 
+            st.markdown("---")
             st.write(data["result"])
-            st.write("Similarity score:", data["similarity_score"])
-            st.write("Cache hit:", data["cache_hit"])
-            st.write("Cluster:", data["dominant_cluster"])
+
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                st.metric("Similarity Score", round(data["similarity_score"], 3))
+
+            with col2:
+                st.metric("Cache Hit", data["cache_hit"])
+
+            with col3:
+                st.metric("Cluster", data["dominant_cluster"])
+
+            st.markdown("---")
 
         else:
             st.error("API request failed")
