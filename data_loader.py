@@ -82,7 +82,7 @@ def get_categories(docs: List[Document]) -> List[str]:
 
 if __name__ == "__main__":
     import sys
-    data_dir = sys.argv[1] if len(sys.argv) > 1 else "../dataset_raw/20_newsgroups"
+    data_dir = sys.argv[1] if len(sys.argv) > 1 else "20_newsgroups"
     docs = load_dataset(data_dir, max_docs=100)
     print(f"Sample doc_id : {docs[0].doc_id}")
     print(f"Sample category: {docs[0].category}")
