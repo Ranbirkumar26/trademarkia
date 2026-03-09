@@ -15,13 +15,12 @@ if st.button("Search"):
 
         if response.status_code == 200:
             data = response.json()
+            st.subheader("Result")
 
-            st.subheader("Results")
-
-            for i, r in enumerate(data["results"]):
-                st.write(f"### Result {i+1}")
-                st.write(r)
-                st.write("---")
+            st.write(data["result"])
+            st.write("Similarity score:", data["similarity_score"])
+            st.write("Cache hit:", data["cache_hit"])
+            st.write("Cluster:", data["dominant_cluster"])
 
         else:
             st.error("API request failed")
