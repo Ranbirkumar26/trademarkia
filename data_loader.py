@@ -52,10 +52,15 @@ def load_dataset(data_dir: str, max_docs: Optional[int] = None) -> List[Document
     for category_dir in sorted(data_path.iterdir()):
         if not category_dir.is_dir():
             continue
+        if category_dir.name.startswith(".") or category_dir.name == "__pycache__":
+            continue
         category = category_dir.name
 
         for doc_file in sorted(category_dir.iterdir()):
             if not doc_file.is_file():
+                continue
+            # Skip compiled/binary or irrelevant files
+            if doc_file.suffix not in {".txt", ""}:
                 continue
 
             # Decode with replacement so broken encodings don't crash load
