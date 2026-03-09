@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import os
-API_URL = os.getenv("API_URL", "https://trademarkia-api.onrender.com/query")
+API_URL = os.getenv("API_URL", "https://trademarkia-api-trh5.onrender.com/query")
 
 st.title("Semantic Search Engine")
 st.write("Search the 20 Newsgroups dataset")
@@ -14,6 +14,8 @@ if st.button("Search"):
         response = requests.post(API_URL, json={"query": query})
 
         if response.status_code == 200:
+            data = response.json()
+
             st.subheader("Search Result")
 
             st.markdown("---")
