@@ -32,4 +32,4 @@ EXPOSE 8000
 # The index must be built before starting the API.
 # To build the index inside the container run:
 #   docker run --rm -v $(pwd)/data:/app/data <image> python scripts/build_index.py --data_dir /app/data
-CMD ["bash", "-c", "python scripts/build_index.py && uvicorn api.main:app --host 0.0.0.0 --port 8000"]
+CMD ["bash", "-c", "python scripts/build_index.py && uvicorn api.main:app --host 0.0.0.0 --port 8000 --app-dir /app"]
