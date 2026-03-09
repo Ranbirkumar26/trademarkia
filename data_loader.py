@@ -42,9 +42,29 @@ def load_dataset(data_dir: str, max_docs: Optional[int] = None) -> List[Document
     -------
     List[Document]
     """
+    # Resolve dataset path robustly (works whether called from project root or scripts/)
     data_path = Path(data_dir)
+
+    if not data_path.is_absolute():
+        project_root = Path(__file__).resolve().parent
+        candidate = (project_root / data_path).resolve()
+
+        # If the joined path does not exist (e.g. "../mini_newsgroups"),
+        # fall back to looking for the dataset inside the project root.
+        if candidate.exists():
+            data_path = candidate
+        else:
+            fallback = (project_root / data_path.name).resolve()
+            data_path = fallback
+
+    # If the provided path is the project root, redirect to the actual dataset folder
+    if (data_path / "mini_newsgroups").exists():
+        data_path = data_path / "mini_newsgroups"
+    elif (data_path / "20_newsgroups").exists():
+        data_path = data_path / "20_newsgroups"
+
     if not data_path.exists():
-        raise FileNotFoundError(f"Dataset directory not found: {data_dir}")
+        raise FileNotFoundError(f"Dataset directory not found: {data_path}")
 
     docs: List[Document] = []
 
