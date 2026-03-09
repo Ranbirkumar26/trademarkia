@@ -3,7 +3,7 @@
 
 # Dataset (too large for GitHub)
 20_newsgroups/
-mini_newsgroups/
+# mini_newsgroups/ is intentionally NOT ignored so a small dataset is available for deployment
 
 # Built index and model files
 vector_db/
