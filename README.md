@@ -1,3 +1,6 @@
+Live Demo: https://trademarkia-j8favfyrs6vqqm9nifpdsm.streamlit.app  
+API Docs: https://trademarkia-api-trh5.onrender.com/docs  
+
 # Semantic Search System — 20 Newsgroups
 
 A lightweight, production-structured semantic search engine with fuzzy clustering and
